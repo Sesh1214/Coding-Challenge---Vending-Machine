@@ -1,0 +1,56 @@
+# Define a class for the vending machine
+class VendingMachine {
+  
+  # Initialize the vending machine with a list of available items and prices
+  # Also initialize a variable to track the user's inserted money
+  def initialize() {
+    available_items <- c("Snacks" = 1.50, "Drinks" = 2.00)
+    inserted_money <- 0
+  }
+  
+  # Define a function to display the available items and prices
+  def display_items() {
+    print(available_items)
+  }
+  
+  # Define a function to allow the user to select an item
+  def select_item(item) {
+    if (item %in% names(available_items)) {
+      item_price <- available_items[item]
+      print(paste("You have selected", item, "with price of $", item_price))
+    } else {
+      print("Sorry, that item is not available")
+    }
+  }
+  
+  # Define a function to allow the user to insert money
+  def insert_money(amount) {
+    inserted_money <<- inserted_money + amount
+    print(paste("You have inserted $", inserted_money))
+  }
+  
+  # Define a function to purchase the selected item
+  def purchase() {
+    if (inserted_money >= item_price) {
+      change <- inserted_money - item_price
+      print(paste("Please take your", item, "and your change of $", change))
+    } else {
+      print("Sorry, you do not have enough money to purchase that item.")
+    }
+  }
+}
+
+# Create an instance of the VendingMachine class
+vm <- VendingMachine$new()
+
+# Display the available items and prices
+vm$display_items()
+
+# Allow the user to select an item
+vm$select_item("Snacks")
+
+# Allow the user to insert money
+vm$insert_money(2)
+
+# Purchase the selected item
+vm$purchase()
